@@ -12,6 +12,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 
 @Entity(name = "Customers")
@@ -34,7 +35,7 @@ public class Customers extends BaseEntity implements Serializable {
     private String accountNumber;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "c_customerId")
-    private List<Cards> cardsList;
+    private Set<Cards> card;
 
     public Customers(Optional<Customers> foundedCustomer, HttpStatus ok) {
     }

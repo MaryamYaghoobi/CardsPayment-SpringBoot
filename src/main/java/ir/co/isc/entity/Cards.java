@@ -32,14 +32,8 @@ public class Cards extends BaseEntity implements Serializable {
     private String issuerCode;
     @Column(name = "c_issuerName", columnDefinition = "VARCHAR(255)")
     private String issuerName;
-    /* @ManyToOne()
-     @JoinColumn(name = "c_cardStatus")
-     private CategoryElement cardStatus;*/
     @Column(name = "c_cardStatus", nullable = true, columnDefinition = "tinyint(1)")
     private Boolean cardStatus;
-    /* @ManyToOne()
-     @JoinColumn(name = "c_cardType")
-     private CategoryElement cardType;*/
     @Column(name = "c_cardType")
     private CardType cardType;
     @ManyToOne()
