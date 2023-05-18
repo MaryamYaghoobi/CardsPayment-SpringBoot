@@ -7,6 +7,8 @@ import ir.co.isc.entity.Customers;
 import ir.co.isc.service.cards.CardService;
 import ir.co.isc.service.customers.CustomersService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,23 +21,19 @@ public class CardController {
     private final CardService cardService;
 
     private final CustomersService customersService;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    /*  @PostMapping("/registerCard")
+
+    @PostMapping("/registerCard")
     @Operation(summary = "ثبت کارت")
-    private ResponseEntity<Cards> registerCard(@RequestBody Cards cards) {
+    // private ResponseEntity<Customers> registerCard(@RequestBody Cards cards) {
+    private ResponseEntity<Customers> registerCard(@RequestParam(required = false) Customers customers, @RequestParam(required = false) Cards cards) {
 
-        return entityService.createNewCard(cards);
+        return customersService.addCard(customers, cards);
 
-    }*/
-  @PostMapping("/registerCard")
-  @Operation(summary = "ثبت کارت")
- // private ResponseEntity<Customers> registerCard(@RequestBody Cards cards) {
-  private ResponseEntity<Customers> registerCard(@RequestParam(required = false) Customers customers, @RequestParam(required = false) Cards cards) {
+    }
 
-      return customersService.addCard(customers,cards);
-
-  }
-   @GetMapping
+    @GetMapping
     @Operation(summary = "جستجوی کارت با کد ملی یا شماره حساب")
     private ResponseEntity<Cards> getCard(@RequestParam(required = false) String nationalCode, @RequestParam(required = false) String accountNumber) {
 
